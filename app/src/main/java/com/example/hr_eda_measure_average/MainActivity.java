@@ -181,7 +181,8 @@ public class MainActivity extends Activity implements MessageClient.OnMessageRec
 
             currentFile = new File(getExternalFilesDir(null), fileName);
             csvWriter = new FileWriter(currentFile);
-            csvWriter.append("SessionStartTime,Timestamp_ms,Raw_mOhms,Converted_uS\n");
+            // ヘッダーを変更
+            csvWriter.append("Timestamp_ms,Elapsed_sec,Raw_mOhms,Converted_uS\n");
 
             isRecording = true;
             sessionStartTime = System.currentTimeMillis();
@@ -331,8 +332,9 @@ public class MainActivity extends Activity implements MessageClient.OnMessageRec
                     if (csvWriter != null) {
                         try {
                             long currentTime = System.currentTimeMillis();
-                            String line = String.format(Locale.US, "%s,%d,%.2f,%.2f\n",
-                                    sessionStartTimeStr, currentTime, rawValue, edaMicrosiemens);
+                            double elapsedSeconds = (currentTime - sessionStartTime) / 1000.0;
+                            String line = String.format(Locale.US, "%d,%.3f,%.2f,%.2f\n",
+                                    currentTime, elapsedSeconds, rawValue, edaMicrosiemens);
                             csvWriter.append(line);
                         } catch (IOException e) {
                             Log.e("CSV", "Write error", e);

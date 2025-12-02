@@ -1,0 +1,125 @@
+{
+  "project_info": {
+    "project_number": "124431754449",
+    "firebase_url": "https://nedo-esports-eda-default-rtdb.firebaseio.com",
+    "project_id": "nedo-esports-eda",
+    "storage_bucket": "nedo-esports-eda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124431754449:android:a84d0e3d52a87fb2b2d1f0",
+        "android_client_info": {
+          "package_name": "com.Nedo.haptics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3JoL148oCsjXZM188rpKJ6vNCvfcKN4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124431754449:android:57a6a1c6ae237ba7b2d1f0",
+        "android_client_info": {
+          "package_name": "com.example.esportsdemotwo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3JoL148oCsjXZM188rpKJ6vNCvfcKN4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124431754449:android:91783cd923f8c92ab2d1f0",
+        "android_client_info": {
+          "package_name": "com.example.esportsexperiment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3JoL148oCsjXZM188rpKJ6vNCvfcKN4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124431754449:android:ac1f8eebc02af57db2d1f0",
+        "android_client_info": {
+          "package_name": "com.example.hr_eda_measure_average"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3JoL148oCsjXZM188rpKJ6vNCvfcKN4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124431754449:android:f33bcc7bfdd8fb1eb2d1f0",
+        "android_client_info": {
+          "package_name": "com.example.measurementapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3JoL148oCsjXZM188rpKJ6vNCvfcKN4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124431754449:android:eec777b372d9feb8b2d1f0",
+        "android_client_info": {
+          "package_name": "com.example.nedobiosignal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3JoL148oCsjXZM188rpKJ6vNCvfcKN4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

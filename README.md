@@ -1,4 +1,4 @@
-  <img width="456" height="456" alt="appimage_watch" 
+  <img width="300" height="300" alt="appimage_watch" 
        src="https://github.com/user-attachments/assets/101b01fb-0e6a-40c5-9f90-915e9043e33f" 
        style="border-radius: 50%; border: 4px solid #f0f0f0; box-shadow: 0 8px 16px rgba(0,0,0,0.15);" />
 # Pixel Watch EDA Logger

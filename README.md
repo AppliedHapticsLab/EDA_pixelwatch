@@ -1,15 +1,15 @@
 # Pixel Watch EDA Logger
 
-Pixel Watch 2 のcEDAセンサーを使用して，皮膚電気活動（EDA）を計測・表示・記録するためのアプリケーションです．
+Pixel Watch 2 のcEDAセンサーを使用して，皮膚電気活動（EDA）を計測・表示・記録するためのアプリケーションです．  
 計測データはCSV形式で保存され，ペアリングされたスマートフォンへ転送されるようになっています．
 
 <img width="456" height="456" alt="Screenshot_20251202_203525" src="https://github.com/user-attachments/assets/5eeed859-4348-41db-a243-db33a3c4d788" />
 
 ## 概要
 
-Pixel Watchに搭載されている特定のセンサーID (`65554`) を利用することでEDAデータを取得できるようになっています．
-参考となるサイトは以下のサイトです．こちらのサイトはPixel watch 2に内蔵されているセンサの詳細とアクセスをするためのIDを調査したものになります．
-Pixel watchに内蔵されているAFE4500と呼ばれるものがcEDA用のセンサICとなっており，出力されるデータがどの様なものであるかも記述されている便利なサイトです．
+Pixel Watchに搭載されている特定のセンサーID (`65554`) を利用することでEDAデータを取得できるようになっています．  
+参考となるサイトは以下のサイトです．こちらのサイトはPixel watch 2に内蔵されているセンサの詳細とアクセスをするためのIDを調査したものになります．  
+Pixel watchに内蔵されているAFE4500と呼ばれるものがcEDA用のセンサICとなっており，出力されるデータがどの様なものであるかも記述されている便利なサイトです．  
 URL：https://smart-health.pages.cs.hs-rm.de/activesense/sensor/sensor_db/
 
 > [!WARNING]

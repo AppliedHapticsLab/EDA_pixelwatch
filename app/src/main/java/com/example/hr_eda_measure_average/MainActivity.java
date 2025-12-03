@@ -181,8 +181,9 @@ public class MainActivity extends Activity implements MessageClient.OnMessageRec
 
             currentFile = new File(getExternalFilesDir(null), fileName);
             csvWriter = new FileWriter(currentFile);
-            // ヘッダーを変更
-            csvWriter.append("Timestamp_ms,Elapsed_sec,Raw_mOhms,Converted_uS\n");
+            // --- 修正: ヘッダーを変更 (Raw_mOhms -> Raw_Value) ---
+            csvWriter.append("Timestamp_ms,Elapsed_sec,Raw_Value,Converted_uS\n");
+            // ----------------------------------------------------
 
             isRecording = true;
             sessionStartTime = System.currentTimeMillis();
@@ -312,28 +313,23 @@ public class MainActivity extends Activity implements MessageClient.OnMessageRec
         public void onSensorChanged(SensorEvent event) {
             if (event.sensor.getType() == SENSOR_TYPE_EDA && event.values.length > 0) {
                 float rawValue = event.values[0];
-                float resistanceMilliOhms = 0.0f;
-                float edaMicrosiemens = 0.0f;
 
-                if (rawValue < 0) {
-                    resistanceMilliOhms = Math.abs(rawValue);
-                    if (resistanceMilliOhms > 1.0f) {
-                        edaMicrosiemens = 1_000_000_000.0f / resistanceMilliOhms;
-                    }
-                } else {
-                    edaMicrosiemens = 0.0f;
-                    resistanceMilliOhms = rawValue;
-                }
+                // ここでさっき作ったメソッドを呼び出すだけで済む
+                float edaMicrosiemens = calculateEdaMicrosiemens(rawValue);
 
-                edaValueTextView.setText(String.format(Locale.US, "%.2f", edaMicrosiemens));
-                edaRawTextView.setText(String.format(Locale.US, "(Raw: %.0f mΩ)", rawValue));
+                // --- UI更新 ---
+                edaValueTextView.setText(String.format(Locale.US, "%.2f µS", edaMicrosiemens));
+                edaRawTextView.setText(String.format(Locale.US, "(Raw: %.0f)", rawValue));
 
+                // --- 記録 & 送信 ---
                 if (isRecording) {
                     if (csvWriter != null) {
                         try {
                             long currentTime = System.currentTimeMillis();
                             double elapsedSeconds = (currentTime - sessionStartTime) / 1000.0;
-                            String line = String.format(Locale.US, "%d,%.3f,%.2f,%.2f\n",
+
+                            // CSV保存
+                            String line = String.format(Locale.US, "%d,%.3f,%.0f,%.2f\n",
                                     currentTime, elapsedSeconds, rawValue, edaMicrosiemens);
                             csvWriter.append(line);
                         } catch (IOException e) {
@@ -348,6 +344,27 @@ public class MainActivity extends Activity implements MessageClient.OnMessageRec
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {}
     };
+
+    /**
+     * Rawデータを皮膚コンダクタンス(µS)に変換するメソッド
+     * 87.5kΩ と 199.2kΩ の実測値によるキャリブレーション済み
+     */
+    private float calculateEdaMicrosiemens(float rawValue) {
+        // キャリブレーション定数 (実験データより導出)
+        final float CALIB_OFFSET = -54154.0f;
+        final float CALIB_SLOPE = 0.00024177f;
+
+        // 接触不良 (Lead Off) 判定
+        // Raw値がオフセット(-54154)より大きい（0やプラスの値に近い）場合は、
+        // 電極が肌から離れているとみなして 0.0 を返す
+        if (rawValue > CALIB_OFFSET) {
+            return 0.0f;
+        }
+
+        // 計算式: G(uS) = -(Raw - Offset) * Slope
+        // Rawがマイナス方向に大きいほど、コンダクタンス(uS)は大きくなる
+        return -(rawValue - CALIB_OFFSET) * CALIB_SLOPE;
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {

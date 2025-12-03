@@ -58,8 +58,8 @@ URL：https://smart-health.pages.cs.hs-rm.de/activesense/sensor/sensor_db/
 | --- | --- |
 | `Timestamp_ms` | システム時刻（ミリ秒、Unixエポック時刻） |
 | `Elapsed_sec` | 記録開始からの経過時間（秒、小数点3桁） |
-| `Raw_mOhms` | センサーから取得した生の抵抗値（mΩ） |
-| `Converted_uS` | コンダクタンスに変換されたEDA値（µS） |
+| `Raw_Value` | センサーから取得した生のADC値（AFE4500 Raw Count, 単位なし）．<br>※接触不良時はプラスの巨大な値，正常時はマイナスの値をとります．|
+| `Converted_uS` | Raw値をキャリブレーション式に基づいて変換した皮膚コンダクタンス（µS）．<br>※ストレスレベルなどの指標として使用可能です．|
 
 **計算式:**
 `Converted_uS = 1,000,000,000 / Raw_mOhms`
